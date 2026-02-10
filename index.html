@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploração Solar - Soft Style</title>
+    <style>
+        /* Reset e Fundo Rosa Claro */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #fff0f5; /* Rosa bem clarinho (Lavender Blush) */
+        }
+
+        table {
+            width: 100%;
+            height: 100%;
+            border-collapse: separate;
+            border-spacing: 15px; 
+            border: none;
+        }
+
+        td {
+            vertical-align: middle;
+            text-align: center;
+            border: none; 
+            background-color: #ffffff; 
+            border-radius: 20px; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
+        }
+
+        .coluna-esquerda {
+            width: 280px;
+        }
+
+        .celula-foto {
+            height: 280px;
+        }
+
+        .celula-menu {
+            padding: 20px;
+        }
+
+        .celula-menu h3 {
+            color: #ff69b4; 
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ffe4e1;
+            padding-bottom: 10px;
+        }
+
+        .lista-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .lista-links li {
+            margin: 10px 0;
+        }
+
+        .lista-links a {
+            display: block;
+            padding: 12px 15px;
+            color: #db7093; 
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .lista-links a:hover {
+            background-color: #fff0f5;
+            color: #ff1493; 
+            transform: translateX(5px);
+        }
+
+        #visor {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+            display: block;
+        }
+
+        .container-visor {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .video-topo {
+            border-radius: 20px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <td class="coluna-esquerda celula-foto">
+                <img src="Estrela.png" alt="Estrela" style="width: 180px; filter: drop-shadow(0 0 10px #ffb6c1);">
+            </td>
+            
+            <td class="video-topo">
+                <video autoplay loop muted playsinline style="width: 51%; height: 5%; object-fit: cover; display: block; margin: 0 auto;">
+                    <source src="videosol.mp4.mp4" type="video/mp4">
+                </video>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="coluna-esquerda celula-menu">
+                <h3>Estudos do Sol</h3>
+                <ul class="lista-links">
+                    <li><a onclick="abrirConteudo('https://pt.m.wikipedia.org/wiki/Sol')">✿ Wikipédia: Sol</a></li>
+                    <li><a onclick="abrirConteudo('https://www.nationalgeographicbrasil.com/espaco/2023/10/qual-e-a-importancia-do-sol-para-a-vida-na-terra')">✿ Importância da Vida</a></li>
+                    <li><a onclick="abrirConteudo('https://recreio.com.br/noticias/planetario/6-fatos-impressionantes-sobre-o-sol.phtml')">✿ 6 Fatos Impressionantes</a></li>
+                    <li><a onclick="abrirConteudo('https://www.youtube.com/embed/5fxLXsrZCjg')">✿ Vídeo: Curiosidades</a></li>
+                    <li><a onclick="abrirConteudo('https://docs.google.com/forms/d/e/1FAIpQLSeS1KDBLGEG9fimeKt4B2pZjTzYuV2C1P-EnN0LptgYKYpjqQ/viewform?usp=header')">✿ Formulário</a></li>
+                </ul>
+            </td>
+
+            <td class="container-visor">
+                <iframe id="visor" src="about:blank" title="Conteúdo Dinâmico"></iframe>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        function abrirConteudo(url) {
+            document.getElementById('visor').src = url;
+        }
+
+        function abrirFormulario() {
+            // Criamos o HTML do formulário com estilo combinando com seu site
+            const htmlForm = `
+                <html>
+                <body style="font-family: sans-serif; background-color: white; padding: 40px; color: #db7093; text-align: left;">
+                    <h2 style="color: #ff69b4;">Cadastro Solar</h2>
+                    <form style="display: flex; flex-direction: column; gap: 15px;">
+                        <label><b>Nome:</b></label>
+                        <input type="text" placeholder="Digite seu nome" style="padding: 10px; border-radius: 8px; border: 1px solid #ffb6c1;">
+                        
+                        <label><b>Idade:</b></label>
+                        <input type="number" placeholder="Sua idade" style="padding: 10px; border-radius: 8px; border: 1px solid #ffb6c1;">
+                        
+                        <label><b>Telefone:</b></label>
+                        <input type="tel" placeholder="(00) 00000-0000" style="padding: 10px; border-radius: 8px; border: 1px solid #ffb6c1;">
+                        
+                        <button type="button" style="background-color: #ff69b4; color: white; border: none; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer;">Enviar Dados</button>
+                    </form>
+                </body>
+                </html>
+            `;
+            const blob = new Blob([htmlForm], { type: 'text/html' });
+            document.getElementById('visor').src = URL.createObjectURL(blob);
+        }
+    </script>
+
+</body>
+</html>
